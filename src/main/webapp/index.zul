@@ -1,0 +1,16 @@
+<zk>
+	<!--<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm')@init('it.moj.webapp.MyViewModel')"
+		validationMessages="@id('vmsgs')">
+		<hlayout>counter: <label value="@load(vm.count)" /></hlayout>
+		<button label="add" onClick="@command('cmd')"/>
+	</window>-->
+	<window title="Search" width="60%" border="normal">
+    	<!-- put child components inside a tag's body -->
+    	<hbox align="center">
+    		Keydddword:
+    		<textbox id="keywordBox" />
+    		<button id="searchButton" label="Search" image="/img/search.png" />
+		</hbox>
+	</window>
+</zk>
