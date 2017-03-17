@@ -62,7 +62,7 @@ public class SearchController extends SelectorComposer<Component> {
 			}
 			
 			if ( carListbox.getItemCount() == 1 ) {
-				carListbox.set;
+				System.out.println("1 Sola ");
 			}
 			//showDetail();
 		}
