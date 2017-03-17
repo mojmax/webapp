@@ -52,6 +52,7 @@ public class SearchController extends SelectorComposer<Component> {
 		carListbox.setModel(new ListModelList<Car>(result));
 		if ( result.isEmpty() ) {
 			keywordBoxSearched.setVisible(false);
+			cleanDetail();
 		}
 		else {
 			keywordBoxSearched.setVisible(true);
@@ -61,9 +62,11 @@ public class SearchController extends SelectorComposer<Component> {
 				keywordBoxSearched.setValue("Founded : " + key);
 			}
 			
-			if ( carListbox.getItemCount() == 1 ) {
+			//if ( carListbox.getItemCount() == 1 ) {
 				System.out.println("1 Sola ");
-			}
+				
+				showDetail(result.get(0));
+			//}
 			//showDetail();
 		}
 	}
@@ -81,5 +84,21 @@ public class SearchController extends SelectorComposer<Component> {
 		priceLabel.setValue(selected.getPrice().toString());
 		descriptionLabel.setValue(selected.getPreview());
 	}
+	public void showDetail(Car car) {
+		previewImage.setSrc(car.getImagePath());
+		modelLabel.setValue(car.getModel());
+		makeLabel.setValue(car.getMake());
+		priceLabel.setValue(car.getPrice().toString());
+		descriptionLabel.setValue(car.getPreview());
+		
+	}
+	public void cleanDetail(){
+		previewImage.setSrc("");
+		modelLabel.setValue("");
+		makeLabel.setValue("");
+		priceLabel.setValue("");
+		descriptionLabel.setValue("");
+		
+	};
 	
 }

@@ -16,7 +16,6 @@
     		</listhead>
     		<template name="model">
     			<listitem>
-    				<listcell label="${each.price}"></listcell>
         			<listcell label="${each.model}"></listcell>
         			<listcell label="${each.make}"></listcell>
         			<listcell>$<label value="${each.price}" /></listcell>
@@ -26,7 +25,7 @@
 		<hbox style="margin-top:20px">
     		<image id="previewImage" width="250px" />
     		<vbox>
-        		<label id="modelLabel" >ccc</label>
+        		<label id="modelLabel" />
         		<label id="makeLabel" />
         		<label id="priceLabel" />
         		<label id="descriptionLabel"/>
