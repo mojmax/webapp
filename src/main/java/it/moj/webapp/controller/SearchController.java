@@ -83,6 +83,7 @@ public class SearchController extends SelectorComposer<Component> {
 		makeLabel.setValue(selected.getMake());
 		priceLabel.setValue(selected.getPrice().toString());
 		descriptionLabel.setValue(selected.getPreview());
+		setDetailVisibility(true);		
 	}
 	public void showDetail(Car car) {
 		previewImage.setSrc(car.getImagePath());
@@ -90,15 +91,21 @@ public class SearchController extends SelectorComposer<Component> {
 		makeLabel.setValue(car.getMake());
 		priceLabel.setValue(car.getPrice().toString());
 		descriptionLabel.setValue(car.getPreview());
-		
-	}
+		setDetailVisibility(true);	
+	}	
 	public void cleanDetail(){
 		previewImage.setSrc("");
 		modelLabel.setValue("");
 		makeLabel.setValue("");
 		priceLabel.setValue("");
 		descriptionLabel.setValue("");
-		
+		setDetailVisibility(false);		
 	};
-	
+	private void setDetailVisibility(boolean visibility) {
+		makeLabel.setVisible(visibility);
+		modelLabel.setVisible(visibility);
+		previewImage.setVisible(visibility);
+		priceLabel.setVisible(visibility);
+		descriptionLabel.setVisible(visibility);
+	}	
 }

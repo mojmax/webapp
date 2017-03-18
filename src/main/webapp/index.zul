@@ -1,13 +1,36 @@
+<?page title="ZK Theme with Bootstrap 3"?>
+<?link rel="stylesheet" type="text/css"	href="/bootstrap-3.3.7-dist/css/bootstrap.css" ?>
+
 <zk>
 	
-	<window title="Search" width="60%" border="normal" apply="it.moj.webapp.controller.SearchController">
+	<window title="Search" width="100%" border="normal" apply="it.moj.webapp.controller.SearchController">
     	<!-- put child components inside a tag's body -->
-    	<hbox align="center">
-    		Keyword:
-    		<textbox id="keywordBox" />
-    		<button id="searchButton" width="140px" height="70px" label="Search" image="/img/find.png" />
-    		<label id="keywordBoxSearched" visible="false" ></label>
-		</hbox>
+    		<div class="page-header">
+			<html>
+				<![CDATA[<h1>Massimo Mojetta <small>Art </small></h1>]]>
+			</html>
+			</div>
+		
+  			<div class="row">
+  				<div class="col-lg-6">
+  					<div class="input-group">
+  				
+						<textbox id="keywordBox" class="form-control" placeholder="Search for Keyword" />
+						<span class="input-group-btn">
+							<button id="searchButton" class="btn btn-default" >Go</button>
+						</span>
+						
+					</div>
+				</div>
+				<div class="col-lg-6">	
+					<label class="label label-success" id="keywordBoxSearched" visible="false" ></label>
+				</div>
+				
+			</div>
+		
+		
+		<span></span>
+		
 		<listbox id="carListbox" height="160px" style="margin-top:20px" emptyMessage="No car found in the result">
     		<listhead>
         		<listheader label="Model" />
@@ -23,13 +46,23 @@
     		</template>
 		</listbox>
 		<hbox style="margin-top:20px">
-    		<image id="previewImage" width="250px" />
-    		<vbox>
-        		<label id="modelLabel" />
-        		<label id="makeLabel" />
-        		<label id="priceLabel" />
-        		<label id="descriptionLabel"/>
-    		</vbox>
+			<div class="row">
+				<div class="col-lg-2">
+					<div class="well" ><image id="previewImage" width="250px" /></div>
+				</div>
+				<div class="col-lg-10">
+					<vbox>
+    					<div class="alert alert-info" ><label id="modelLabel" /></div>    			
+						<div class="alert alert-success" ><label id="makeLabel"/></div>
+						<div class="alert alert-info" ><label id="priceLabel"/></div>
+        				<div class="alert alert-success" ><label id="descriptionLabel"/></div>
+    				</vbox>				
+				</div>
+			</div>
+    		
+    		
+    		
 		</hbox>
+		<a label="See all messages" href="#"><span class="z-icon-arrow-right"/></a>
 	</window>
 </zk>
