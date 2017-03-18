@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CarServiceImpl implements CarService{
-
+	    private static int visit=2; 
 		//data model
 		private List<Car> carList= new LinkedList<Car>();
 		private static int id = 1;
@@ -89,11 +89,14 @@ public class CarServiceImpl implements CarService{
 							" There is a choice of three petrol engines. The basic 1.6-liter petrol is the same unit found on the MINI. The top of the range is a 2.0-liter engine, providing 133 hp, besides acceleration is a weak point of all Neons.",
 							"/img/car4.png",
 							85400));
+			visit++;
 		}
 		public List<Car> findAll(){
 			return carList;
 		}
-		
+		public int getVisited() {
+			return visit;
+		}
 		public List<Car> search(String keyword){
 			List<Car> result = new LinkedList<Car>();
 			if (keyword==null || "".equals(keyword)){

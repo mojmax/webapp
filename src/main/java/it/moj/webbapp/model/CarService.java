@@ -16,6 +16,7 @@ public interface CarService {
 	 * @return list of car that match the keyword
 	 */
 	public List<Car> search(String keyword);
-
+	
+	public int getVisited();
 
 }

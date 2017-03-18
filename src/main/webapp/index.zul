@@ -12,17 +12,17 @@
 			</div>
 		
   			<div class="row">
-  				<div class="col-lg-6">
+  				<div class="col-lg-6 col-sm-12">
   					<div class="input-group">
-  				
-						<textbox id="keywordBox" class="form-control" placeholder="Search for Keyword" />
-						<span class="input-group-btn">
+  						<span class="input-group-btn">
 							<button id="searchButton" class="btn btn-default" >Go</button>
 						</span>
+						<textbox id="keywordBox" class="form-control" placeholder="Search for Keyword" />
+						
 						
 					</div>
 				</div>
-				<div class="col-lg-6">	
+				<div class="col-lg-6 col-sm-12">	
 					<label class="label label-success" id="keywordBoxSearched" visible="false" ></label>
 				</div>
 				
@@ -47,10 +47,10 @@
 		</listbox>
 		<hbox style="margin-top:20px">
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-4">
 					<div class="well" ><image id="previewImage" width="250px" /></div>
 				</div>
-				<div class="col-lg-10">
+				<div class="col-lg-8">
 					<vbox>
     					<div class="alert alert-info" ><label id="modelLabel" /></div>    			
 						<div class="alert alert-success" ><label id="makeLabel"/></div>
@@ -63,6 +63,14 @@
     		
     		
 		</hbox>
-		<a label="See all messages" href="#"><span class="z-icon-arrow-right"/></a>
+		<span></span>
+		
+		<span></span>
+		
+    		<span class="badge">Visit  <label id="visitLabel" ></label></span>
+    		
+  		
+		
+		
 	</window>
 </zk>

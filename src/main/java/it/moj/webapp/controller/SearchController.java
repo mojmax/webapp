@@ -40,9 +40,16 @@ public class SearchController extends SelectorComposer<Component> {
 	
 	@Wire 
 	private Label descriptionLabel;
+	
+	@Wire
+	private Label visitLabel;
+	
+
 
 	
 	CarService carService = new CarServiceImpl();
+	
+	
 		
 	@Listen("onClick = button#searchButton")
 	public void search() {
@@ -50,6 +57,7 @@ public class SearchController extends SelectorComposer<Component> {
 		System.out.println("key " + key);	
 		List<Car> result = carService.search(key);
 		carListbox.setModel(new ListModelList<Car>(result));
+		visitLabel.setValue((new Integer(carService.getVisited())).toString());
 		if ( result.isEmpty() ) {
 			keywordBoxSearched.setVisible(false);
 			cleanDetail();
@@ -83,6 +91,8 @@ public class SearchController extends SelectorComposer<Component> {
 		makeLabel.setValue(selected.getMake());
 		priceLabel.setValue(selected.getPrice().toString());
 		descriptionLabel.setValue(selected.getPreview());
+		System.out.println("Visited >>: " + carService.getVisited());
+		visitLabel.setValue((new Integer(carService.getVisited())).toString());
 		setDetailVisibility(true);		
 	}
 	public void showDetail(Car car) {
