@@ -1,4 +1,4 @@
-package it.moj.webbapp.model;
+package it.moj.webapp.model;
 
 
 public class Car {

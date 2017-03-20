@@ -12,9 +12,9 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Textbox;
 
-import it.moj.webbapp.model.Car;
-import it.moj.webbapp.model.CarService;
-import it.moj.webbapp.model.CarServiceImpl;
+import it.moj.webapp.model.Car;
+import it.moj.webapp.model.CarService;
+import it.moj.webapp.model.CarServiceImpl;
 
 public class SearchController extends SelectorComposer<Component> {
 	@Wire
