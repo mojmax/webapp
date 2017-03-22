@@ -4,10 +4,13 @@ package it.moj.webapp.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.zkoss.zul.ListModel;
+import org.zkoss.zul.ListModelList;
+
 public class CarServiceImpl implements CarService{
 	    private static int visit=2; 
 		//data model
-		private List<Car> carList= new LinkedList<Car>();
+		private List<Car> carList= new ListModelList<Car>();
 		private static int id = 1;
 		//initialize book data
 		public CarServiceImpl() {

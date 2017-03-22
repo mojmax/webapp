@@ -1,6 +1,5 @@
 package it.moj.webapp.controller;
 
-
 import java.util.List;
 
 import org.zkoss.zk.ui.Component;
@@ -9,6 +8,7 @@ import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
@@ -50,21 +50,30 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	private Label visitLabel;
 	
 	CarService carService = new CarServiceImpl();
+	
+	@Override
+	public void doAfterCompose(Component comp) throws Exception {
+		super.doAfterCompose(comp);
+		//List<Car> allCar = carService.findAll();
+		//ListModel<Car> lmallCar =  new ListModelList<Car>(allCar);
+		//carListbox.setModel(new ListModelList<Car>(allCar));
+		List<Car> result = carService.findAll();
+		carListbox.setModel(new ListModelList<Car>(result));
+		ListitemRenderer<Car> lsRend = new CarRenderer();
+		carListbox.setItemRenderer(lsRend);
+	};
 		
 	@Listen("onClick = button#searchButton")
 	public void search() {
 		String key = keywordBox.getValue();
 		System.out.println("key " + key);	
-		List<Car> result = carService.search(key);
-		
-		carListbox.setModel(new ListModelList<Car>(result));
-		ListitemRenderer<Car> lsRend = new CarRenderer();
-		
-		carListbox.setItemRenderer(lsRend);
-		
+		List<Car> result = new ListModelList<Car>(carService.search(key));		
+		carListbox.setModel((ListModel<Car>) result);
+		ListitemRenderer<Car> lsRend = new CarRenderer();		
+		carListbox.setItemRenderer(lsRend);		
 		//carListbox.setModel(new ListModelList<Car>(result));
 		visitLabel.setValue((new Integer(carService.getVisited())).toString());
-		if ( result.isEmpty() ) {
+		if ( result.isEmpty()) {
 			keywordBoxSearched.setVisible(false);
 			cleanDetail();
 		}
@@ -75,12 +84,11 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 			} else {
 				keywordBoxSearched.setValue("Founded : " + key);
 			}
-			showDetail(result.get(0));
-			
+			showDetail(result.get(0));			
 		}
 	}
 	
-	@Listen("onSelect = #carListbox")
+	@Listen("onSelect=#carListbox")
 	public void showDetail() {
 		//???
 		System.out.println("showDetail()");
@@ -105,6 +113,7 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		descriptionLabel.setValue(car.getPreview());
 		setDetailVisibility(true);	
 	}	
+	
 	public void cleanDetail(){
 		previewImage.setSrc("");
 		modelLabel.setValue("");

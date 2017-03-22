@@ -2,6 +2,8 @@ package it.moj.webapp.model;
 
 import java.util.List;
 
+
+
 public interface CarService {
 
 	/**
