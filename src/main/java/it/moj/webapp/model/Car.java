@@ -9,7 +9,7 @@ public class Car {
 	private String preview;
 	private String imagePath;
 	private Integer price;
-	private static int visit = 0;
+	//private static int visit = 0;
 	
 	public Car(){
 	}
@@ -21,7 +21,6 @@ public class Car {
 		this.preview = preview;
 		this.imagePath = imagePath;
 		this.price = price;
-		
 	}
 	
 	public Integer getId() {

@@ -1,16 +1,14 @@
 <?page title="ZK Theme with Bootstrap 3"?>
 <?link rel="stylesheet" type="text/css"	href="/bootstrap-3.3.7-dist/css/bootstrap.css" ?>
 
-<zk>
-	
-	<window title="Search" width="100%" border="normal" apply="it.moj.webapp.controller.SearchController">
+<zk>	
+	<window title="Search" width="100%" border="normal" apply="it.moj.webapp.controller.SearchControllerRenderer">
     	<!-- put child components inside a tag's body -->
     		<div class="page-header">
 			<html>
 				<![CDATA[<h1>Massimo Mojetta <small>Art </small></h1>]]>
 			</html>
-			</div>
-		
+			</div>		
   			<div class="row">
   				<div class="col-lg-6 col-sm-12">
   					<div class="input-group">
@@ -18,17 +16,12 @@
 							<button id="searchButton" class="btn btn-default" >Go</button>
 						</span>
 						<textbox id="keywordBox" class="form-control" placeholder="Search for Keyword" />
-						
-						
 					</div>
 				</div>
 				<div class="col-lg-6 col-sm-12">	
 					<label class="label label-success" id="keywordBoxSearched" visible="false" ></label>
 				</div>
-				
 			</div>
-		
-		
 		<span></span>
 		
 		<listbox id="carListbox" height="160px" style="margin-top:20px" emptyMessage="No car found in the result">
@@ -37,13 +30,13 @@
         		<listheader label="Make" />
         		<listheader label="Price" width="20%"/>
     		</listhead>
-    		<template name="model">
+    	<!--	<template name="model"> 
     			<listitem>
         			<listcell label="${each.model}"></listcell>
         			<listcell label="${each.make}"></listcell>
         			<listcell>$<label value="${each.price}" /></listcell>
     			</listitem>
-    		</template>
+    		</template> -->
 		</listbox>
 		<hbox style="margin-top:20px">
 			<div class="row">
@@ -59,18 +52,9 @@
     				</vbox>				
 				</div>
 			</div>
-    		
-    		
-    		
 		</hbox>
 		<span></span>
-		
 		<span></span>
-		
     		<span class="badge">Visit  <label id="visitLabel" ></label></span>
-    		
-  		
-		
-		
 	</window>
 </zk>

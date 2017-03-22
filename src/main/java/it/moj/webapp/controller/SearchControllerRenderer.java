@@ -1,5 +1,6 @@
 package it.moj.webapp.controller;
 
+
 import java.util.List;
 
 import org.zkoss.zk.ui.Component;
@@ -10,15 +11,17 @@ import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Listcell;
+import org.zkoss.zul.Listitem;
+import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Textbox;
 
 import it.moj.webapp.model.Car;
 import it.moj.webapp.model.CarService;
 import it.moj.webapp.model.CarServiceImpl;
 
-public class SearchController extends SelectorComposer<Component> {
+public class SearchControllerRenderer extends SelectorComposer<Component> {
 	private static final long serialVersionUID = 1L;
-	
 	@Wire
 	private Textbox keywordBox;
 	
@@ -46,19 +49,20 @@ public class SearchController extends SelectorComposer<Component> {
 	@Wire
 	private Label visitLabel;
 	
-
-
-	
 	CarService carService = new CarServiceImpl();
-	
-	
 		
 	@Listen("onClick = button#searchButton")
 	public void search() {
 		String key = keywordBox.getValue();
 		System.out.println("key " + key);	
 		List<Car> result = carService.search(key);
+		
 		carListbox.setModel(new ListModelList<Car>(result));
+		ListitemRenderer<Car> lsRend = new CarRenderer();
+		
+		carListbox.setItemRenderer(lsRend);
+		
+		//carListbox.setModel(new ListModelList<Car>(result));
 		visitLabel.setValue((new Integer(carService.getVisited())).toString());
 		if ( result.isEmpty() ) {
 			keywordBoxSearched.setVisible(false);
@@ -71,13 +75,8 @@ public class SearchController extends SelectorComposer<Component> {
 			} else {
 				keywordBoxSearched.setValue("Founded : " + key);
 			}
+			showDetail(result.get(0));
 			
-			//if ( carListbox.getItemCount() == 1 ) {
-				System.out.println("1 Sola ");
-				
-				showDetail(result.get(0));
-			//}
-			//showDetail();
 		}
 	}
 	
@@ -97,6 +96,7 @@ public class SearchController extends SelectorComposer<Component> {
 		visitLabel.setValue((new Integer(carService.getVisited())).toString());
 		setDetailVisibility(true);		
 	}
+	
 	public void showDetail(Car car) {
 		previewImage.setSrc(car.getImagePath());
 		modelLabel.setValue(car.getModel());
