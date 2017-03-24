@@ -69,7 +69,7 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		carListbox.setModel(new ListModelList<Car>(result));
 		ListitemRenderer<Car> lsRend = new CarRenderer();
 		carListbox.setItemRenderer(lsRend);
-		
+		//cleanDetail();
 		
 	};
 	
@@ -77,12 +77,14 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	@Listen("onClick=#searchButton; onOK=#keywordBox")					   
 	public void search() {
 		String key = keywordBox.getValue();
-		System.out.println("key " + key);	
+		System.out.println("Search() " );
+		System.out.println("carListbox :" + carListbox);
 		List<Car> result = new ListModelList<Car>(carService.search(key));		
 		carListbox.setModel((ListModel<Car>) result);
+		System.out.println("Set Model " + (ListModel<Car>) result);
 		ListitemRenderer<Car> lsRend = new CarRenderer();		
 		carListbox.setItemRenderer(lsRend);		
-		//carListbox.setModel(new ListModelList<Car>(result));
+		
 		visitLabel.setValue((new Integer(carService.getVisited())).toString());
 		if ( result.isEmpty()) {
 			keywordBoxSearched.setVisible(false);
@@ -95,6 +97,8 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 			} else {
 				keywordBoxSearched.setValue("Founded : " + key);
 			}
+			System.out.println("Show 1 occ " + result.getClass() + " :" + result.get(0));
+			System.out.println("carlistBox " + carListbox.getClass() + " :" + carListbox);
 			showDetail(result.get(0));			
 		}
 	}
@@ -102,9 +106,11 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	@Listen("onSelect=#carListbox")
 	public void showDetail() {
 		//???
-		System.out.println("showDetail()");
-		Car selected = carListbox.getSelectedItem().getValue(); 
-		//previewImage.setSrc(selected.getImagePath());
+		System.out.println("entro in showDetail()" );
+		System.out.println("carlistBox " + carListbox.getClass() + " :" + carListbox);
+		System.out.println("carListbox.getSelectedItem()" + carListbox.getSelectedItem().getClass() + " : "+ carListbox.getSelectedItem());
+		System.out.println("carListbox.getModel()" + carListbox.getModel().getClass() + " : "+ carListbox.getModel());
+		Car selected = (Car) carListbox.getModel().getElementAt(carListbox.getSelectedIndex()); 
 		previewImage.setSrc(selected.getImagePath());
 		System.out.println(selected.getImagePath());
 		modelLabel.setValue(selected.getModel());
@@ -113,16 +119,19 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		descriptionLabel.setValue(selected.getPreview());
 		System.out.println("Visited >>: " + carService.getVisited());
 		visitLabel.setValue((new Integer(carService.getVisited())).toString());
-		setDetailVisibility(true);		
+		setDetailVisibility(true);
+		System.out.println("esco da showDetail()" );
 	}
 	
 	public void showDetail(Car car) {
+		System.out.println("entro in showDetail(Car car) : " + car.getClass() + " : " + car);
 		previewImage.setSrc(car.getImagePath());
 		modelLabel.setValue(car.getModel());
 		makeLabel.setValue(car.getMake());
 		priceLabel.setValue(car.getPrice().toString());
 		descriptionLabel.setValue(car.getPreview());
 		setDetailVisibility(true);	
+		System.out.println("esco da showDetail(Car car) : ");
 	}	
 	
 	public void cleanDetail(){
