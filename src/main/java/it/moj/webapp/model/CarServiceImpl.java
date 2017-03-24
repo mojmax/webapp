@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.zkoss.zul.ListModelList;
 
-@Service("carService")
+@Service("carServiceSpring")
 @Scope(value="singleton",proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class CarServiceImpl implements CarService{
 	    private static int visit=2; 

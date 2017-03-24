@@ -50,7 +50,7 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	private Label visitLabel;
 	
 	// wire service carService
-	@WireVariable("carService")
+	@WireVariable("carServiceSpring")
 	CarService carService;
 	
 	//CarService carService = new CarServiceImpl();
@@ -74,7 +74,7 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	};
 	
 		
-	@Listen("onClick=button#searchButton")					   
+	@Listen("onClick=#searchButton; onOK=#keywordBox")					   
 	public void search() {
 		String key = keywordBox.getValue();
 		System.out.println("key " + key);	
@@ -103,7 +103,7 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	public void showDetail() {
 		//???
 		System.out.println("showDetail()");
-		Car selected = carListbox.getSelectedItem().getValue();
+		Car selected = carListbox.getSelectedItem().getValue(); 
 		//previewImage.setSrc(selected.getImagePath());
 		previewImage.setSrc(selected.getImagePath());
 		System.out.println(selected.getImagePath());
@@ -140,6 +140,5 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		priceLabel.setVisible(visibility);
 		descriptionLabel.setVisible(visibility);
 	}
-
 
 }
