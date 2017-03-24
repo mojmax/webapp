@@ -4,9 +4,13 @@ package it.moj.webapp.model;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.zkoss.zul.ListModel;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Service;
 import org.zkoss.zul.ListModelList;
 
+@Service("carService")
+@Scope(value="singleton",proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class CarServiceImpl implements CarService{
 	    private static int visit=2; 
 		//data model

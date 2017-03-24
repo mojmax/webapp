@@ -42,7 +42,7 @@ public class Car {
 	}
 	
 	public void setImagePath(String image) {
-		this.imagePath = imagePath;
+		this.imagePath = image;
 	}
 	public Integer getPrice() {
 		return price;

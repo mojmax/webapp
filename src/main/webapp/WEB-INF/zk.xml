@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <zk>
-	<!-- [Optional]
+	<!--  [Optional]
 	Uncomment if you want to defines the application's name 
 	
 	<preference>
 		<name>org.zkoss.zk.ui.WebApp.name</name>
-		<value>webapp</value>
+		<value>webapp Moj</value>
 	</preference>
-	-->
+	 -->
 	
 </zk>

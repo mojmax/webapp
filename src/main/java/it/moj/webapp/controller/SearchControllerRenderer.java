@@ -5,21 +5,21 @@ import java.util.List;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
-import org.zkoss.zul.Listcell;
-import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Textbox;
 
 import it.moj.webapp.model.Car;
 import it.moj.webapp.model.CarService;
-import it.moj.webapp.model.CarServiceImpl;
 
+@VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class SearchControllerRenderer extends SelectorComposer<Component> {
 	private static final long serialVersionUID = 1L;
 	@Wire
@@ -49,11 +49,19 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	@Wire
 	private Label visitLabel;
 	
-	CarService carService = new CarServiceImpl();
+	// wire service carService
+	@WireVariable("carService")
+	CarService carService;
 	
-	@Override
-	public void doAfterCompose(Component comp) throws Exception {
-		super.doAfterCompose(comp);
+	//CarService carService = new CarServiceImpl();
+	
+	
+	
+//	@Override
+	public void doAfterCompose(Component comp) throws Exception {		
+	 	super.doAfterCompose(comp);
+	 	List<Component> l =  comp.getChildren();
+		l = null;
 		//List<Car> allCar = carService.findAll();
 		//ListModel<Car> lmallCar =  new ListModelList<Car>(allCar);
 		//carListbox.setModel(new ListModelList<Car>(allCar));
@@ -61,9 +69,12 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		carListbox.setModel(new ListModelList<Car>(result));
 		ListitemRenderer<Car> lsRend = new CarRenderer();
 		carListbox.setItemRenderer(lsRend);
-	};
 		
-	@Listen("onClick = button#searchButton")
+		
+	};
+	
+		
+	@Listen("onClick=button#searchButton")					   
 	public void search() {
 		String key = keywordBox.getValue();
 		System.out.println("key " + key);	
@@ -128,5 +139,7 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		previewImage.setVisible(visibility);
 		priceLabel.setVisible(visibility);
 		descriptionLabel.setVisible(visibility);
-	}	
+	}
+
+
 }
