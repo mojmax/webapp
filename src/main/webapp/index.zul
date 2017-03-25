@@ -25,18 +25,20 @@
 		<span></span>
 		
 		<listbox id="carListbox" height="160px" style="margin-top:20px" emptyMessage="No car found in the result">
+			
     		<listhead>
         		<listheader label="Model" />
         		<listheader label="Make" />
         		<listheader label="Price" width="20%"/>
     		</listhead>
-    	<!--	<template name="model"> 
+    		<template name="model"> 
     			<listitem>
+    				
         			<listcell label="${each.model}"></listcell>
         			<listcell label="${each.make}"></listcell>
         			<listcell>$<label value="${each.price}" /></listcell>
-    			</listitem>
-    		</template> -->
+    			</listitem> 
+    		</template>  
 		</listbox>
 		<hbox style="margin-top:20px">
 			<div class="row">

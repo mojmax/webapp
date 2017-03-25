@@ -13,6 +13,7 @@ import org.zkoss.zul.Label;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
+import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.Textbox;
 
@@ -62,13 +63,13 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	 	super.doAfterCompose(comp);
 	 	List<Component> l =  comp.getChildren();
 		l = null;
-		//List<Car> allCar = carService.findAll();
-		//ListModel<Car> lmallCar =  new ListModelList<Car>(allCar);
-		//carListbox.setModel(new ListModelList<Car>(allCar));
-		List<Car> result = carService.findAll();
+		List<Car> allCar = carService.findAll();
+		carListbox.setModel(new ListModelList<Car>(allCar));
+		
+		/*List<Car> result = carService.findAll();
 		carListbox.setModel(new ListModelList<Car>(result));
 		ListitemRenderer<Car> lsRend = new CarRenderer();
-		carListbox.setItemRenderer(lsRend);
+		carListbox.setItemRenderer(lsRend);*/
 		//cleanDetail();
 		
 	};
@@ -77,13 +78,15 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 	@Listen("onClick=#searchButton; onOK=#keywordBox")					   
 	public void search() {
 		String key = keywordBox.getValue();
+		/*List<Car> result = new ListModelList<Car>(carService.search(key));		
+		carListbox.setModel((ListModelList<Car>) result);
+		ListitemRenderer<Car> lsRend = new CarRenderer();		
+		carListbox.setItemRenderer(lsRend);*/		
+		List<Car> result = carService.search(key);
+		carListbox.setModel (new ListModelList<Car>(result));
 		System.out.println("Search() " );
 		System.out.println("carListbox :" + carListbox);
-		List<Car> result = new ListModelList<Car>(carService.search(key));		
-		carListbox.setModel((ListModel<Car>) result);
-		System.out.println("Set Model " + (ListModel<Car>) result);
-		ListitemRenderer<Car> lsRend = new CarRenderer();		
-		carListbox.setItemRenderer(lsRend);		
+		System.out.println("Set Model " +  result);
 		
 		visitLabel.setValue((new Integer(carService.getVisited())).toString());
 		if ( result.isEmpty()) {
@@ -108,9 +111,12 @@ public class SearchControllerRenderer extends SelectorComposer<Component> {
 		//???
 		System.out.println("entro in showDetail()" );
 		System.out.println("carlistBox " + carListbox.getClass() + " :" + carListbox);
-		System.out.println("carListbox.getSelectedItem()" + carListbox.getSelectedItem().getClass() + " : "+ carListbox.getSelectedItem());
+		System.out.println("carListbox.getSelectedItem() " + carListbox.getSelectedItem().getClass() + " : " + carListbox.getSelectedItem());
 		System.out.println("carListbox.getModel()" + carListbox.getModel().getClass() + " : "+ carListbox.getModel());
 		Car selected = (Car) carListbox.getModel().getElementAt(carListbox.getSelectedIndex()); 
+		Car lc1 = carListbox.getSelectedItem().getValue();
+		System.out.println("carListbox.getSelectedItem() " + carListbox.getSelectedItem().getClass() + " : " + carListbox.getSelectedItem() );
+		System.out.println("carListbox.getSelectedItem().getValue() " + carListbox.getSelectedItem().getValue());
 		previewImage.setSrc(selected.getImagePath());
 		System.out.println(selected.getImagePath());
 		modelLabel.setValue(selected.getModel());
