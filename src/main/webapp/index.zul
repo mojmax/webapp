@@ -27,8 +27,8 @@
 		<listbox id="carListbox" height="160px" style="margin-top:20px" emptyMessage="No car found in the result">
 			
     		<listhead>
-        		<listheader label="Model" />
-        		<listheader label="Make" />
+        		<listheader label="Model"/>
+        		<listheader label="Make"/>
         		<listheader label="Price" width="20%"/>
     		</listhead>
     		<template name="model"> 
